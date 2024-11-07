@@ -3,10 +3,11 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const appContext = useAppContext();
-  const { loginUser } = appContext;
+  const { loginUser, loading } = appContext;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,6 +55,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      {loading && <Loading />}
     </div>
   );
 };

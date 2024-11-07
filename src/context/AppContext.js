@@ -13,6 +13,7 @@ const baseUrl = "https://task-manager-back-834v.onrender.com/api/";
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
+  const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const isUserInfoRetrieved = useRef(false);
@@ -27,6 +28,7 @@ const AppContextProvider = (props) => {
 
   //================================= LOGIN ===================================== //
   const loginUser = async ({ email, password }) => {
+    setLoading(true);
     const response = await fetch(`${baseUrl}auth/login`, {
       method: "POST",
       headers: {
@@ -34,7 +36,7 @@ const AppContextProvider = (props) => {
       },
       body: JSON.stringify({ email, password }),
     });
-
+    setLoading(false);
     if (response.ok) {
       const resp = await response.json();
       const userInfo = { ...resp?.data, isLoggedIn: true };
@@ -58,6 +60,7 @@ const AppContextProvider = (props) => {
 
   //===================================== SIGNUP ======================================== //
   const signupUser = async ({ email, password, name }) => {
+    setLoading(true);
     const response = await fetch(`${baseUrl}auth/signup`, {
       method: "POST",
       headers: {
@@ -65,7 +68,7 @@ const AppContextProvider = (props) => {
       },
       body: JSON.stringify({ email, password, name }),
     });
-
+    setLoading(false);
     if (response.ok) {
       const resp = await response.json();
       const userInfo = { ...resp?.data, isLoggedIn: true };
@@ -166,6 +169,7 @@ const AppContextProvider = (props) => {
       value={{
         tasks,
         userInfo,
+        loading,
         addTask,
         deleteTask,
         editTask,

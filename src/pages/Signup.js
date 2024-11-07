@@ -3,10 +3,10 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
-
+import Loading from "../components/Loading";
 const Signup = () => {
   const appContext = useAppContext();
-  const { signupUser } = appContext;
+  const { signupUser, loading } = appContext;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -72,6 +72,7 @@ const Signup = () => {
           </Link>
         </p>
       </div>
+      {loading && <Loading />}
     </div>
   );
 };
