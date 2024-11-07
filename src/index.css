@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  transition: all 0.2s;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  background-color: #f4f9fa;
+}
