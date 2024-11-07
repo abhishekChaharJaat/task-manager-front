@@ -7,7 +7,8 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router-dom";
 
-const baseUrl = "http://localhost:2000/api/";
+const baseUrl = "https://task-manager-back-834v.onrender.com/api/";
+// const baseUrl = "http://localhost:2000/api/";
 
 export const AppContext = createContext();
 
