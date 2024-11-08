@@ -13,7 +13,7 @@ const baseUrl = "https://task-manager-back-834v.onrender.com/api/";
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const isUserInfoRetrieved = useRef(false);
@@ -84,7 +84,7 @@ const AppContextProvider = (props) => {
   //============================== FETCH ALL TASKS ================================ //
   const getAllTasks = async (token) => {
     if (!token) return;
-
+    setLoading(true);
     const response = await fetch(`${baseUrl}tasks/fetchalltasks`, {
       method: "GET",
       headers: {
@@ -92,6 +92,7 @@ const AppContextProvider = (props) => {
         Authorization: token,
       },
     });
+    setLoading(false);
     // set all tasks in state
     const data = await response.json();
     console.log(data);
@@ -103,6 +104,7 @@ const AppContextProvider = (props) => {
     const token = userInfo.authToken;
 
     if (!token) return;
+    setLoading(true);
     const response = await fetch(`${baseUrl}tasks/addtask`, {
       method: "POST",
       headers: {
@@ -111,6 +113,7 @@ const AppContextProvider = (props) => {
       },
       body: JSON.stringify({ title, description, dueDate }),
     });
+    setLoading(false);
     // Update tasks state after adding
     console.log(response);
     if (response.ok) {
@@ -122,8 +125,8 @@ const AppContextProvider = (props) => {
   //================================ DELETE A TASK ======================================= //
   const deleteTask = async (id) => {
     const token = userInfo.authToken;
+    setLoading(true);
     if (!token) return;
-    console.log(id);
     const response = await fetch(`${baseUrl}tasks/delete/${id}`, {
       method: "DELETE",
       headers: {
@@ -131,6 +134,7 @@ const AppContextProvider = (props) => {
         Authorization: token,
       },
     });
+    setLoading(false);
     // Remove task from state after deleting
     if (response.ok) {
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
@@ -141,7 +145,7 @@ const AppContextProvider = (props) => {
   const editTask = async (id, updatedTask) => {
     const token = userInfo.authToken;
     if (!token) return;
-
+    setLoading(true);
     const response = await fetch(`${baseUrl}tasks/update/${id}`, {
       method: "PUT",
       headers: {
@@ -150,7 +154,6 @@ const AppContextProvider = (props) => {
       },
       body: JSON.stringify(updatedTask),
     });
-
     if (response.ok) {
       // const data = await response.json();
       // setTasks((prevTasks) =>
@@ -158,6 +161,7 @@ const AppContextProvider = (props) => {
       // );
       getAllTasks(token);
     }
+    setLoading(false);
   };
 
   useEffect(() => {

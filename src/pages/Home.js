@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useAppContext } from "../context/AppContext";
 function Home() {
+  const appContext = useAppContext();
+  const { userInfo } = appContext;
   return (
     <div className="flex flex-col min-h-screen pt-16 bg-gray-100">
       <section
@@ -19,12 +21,21 @@ function Home() {
             Effortlessly manage your tasks and achieve your goals with
             TaskManager.
           </p>
-          <Link
-            to="/signup"
-            className="px-6 py-3 text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700"
-          >
-            Get Started
-          </Link>
+          {userInfo?.isLoggedIn ? (
+            <Link
+              to="/tasks"
+              className="px-6 py-3 text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700"
+            >
+              View Tasks
+            </Link>
+          ) : (
+            <Link
+              to="/signup"
+              className="px-6 py-3 text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700"
+            >
+              Get Started
+            </Link>
+          )}
         </div>
       </section>
 
