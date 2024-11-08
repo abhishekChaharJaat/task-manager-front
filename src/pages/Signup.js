@@ -24,7 +24,7 @@ const Signup = () => {
     <>
       {loading && <Loading />}
       {true && (
-        <div className="w-full px-6 pt-20  border-2 flex justify-center items-center min-h-screen box-border bg-[#f4f9fa] ">
+        <div className="w-full px-6 pt-20 flex justify-center items-center min-h-screen box-border bg-[#f4f9fa] ">
           <div className="box-border flex flex-col items-center justify-center px-4 md:px-6 lg:px-10 py-6  lg:py-10 bg-white shadow-lg rounded-2xl w-[500px]">
             <p className="text-2xl font-bold text-gray-700 uppercase lg:text-3xl ">
               Signup

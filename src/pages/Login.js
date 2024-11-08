@@ -22,7 +22,7 @@ const Login = () => {
     <>
       {loading && <Loading />}
       {true && (
-        <div className="w-full border-2 py-20 flex justify-center items-center min-h-screen box-border  bg-[#f4f9fa] px-6 ">
+        <div className="w-full py-20 flex justify-center items-center min-h-screen box-border  bg-[#f4f9fa] px-6 ">
           {/* Heading */}
 
           <div className="box-border flex flex-col items-center justify-center px-4 md:px-6 lg:px-10 py-6  lg:py-10 bg-white shadow-lg rounded-2xl w-[500px]">
