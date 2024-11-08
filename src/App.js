@@ -8,7 +8,6 @@ import Header from "./components/Header";
 import TasksList from "./pages/TasksList";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AppContextProvider from "./context/AppContext";
-import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
             }
           />
         </Routes>
-        <Footer />
       </AppContextProvider>
     </Router>
   );
