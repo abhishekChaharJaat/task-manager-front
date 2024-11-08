@@ -1,5 +1,5 @@
-.App-logo {
-  pointer-events: none;
+.App {
+  padding-top: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

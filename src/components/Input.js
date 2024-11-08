@@ -24,7 +24,7 @@ const Input = (props) => {
           onChange={onChange}
           placeholder={placeholder}
           rows={3}
-          className={`w-full mt-1 text-sm md:text-base px-3 py-2 border border-gray-400 rounded-md  focus:border-blue-500 focus:outline-4 focus:outline  focus:outline-blue-500/10 ${className}`}
+          className={`w-full mt-1 text-base md:text-base px-3 py-2 border border-gray-400 rounded-md  focus:border-blue-500 focus:outline-4 focus:outline  focus:outline-blue-500/10 ${className}`}
         ></textarea>
       ) : (
         <input
@@ -32,7 +32,7 @@ const Input = (props) => {
           type={type}
           value={value}
           placeholder={placeholder}
-          className={`w-full mt-1 placeholder:capitalize placeholder:text-sm text-sm md:text-base px-2 py-1.5 border border-gray-400 rounded-md  focus:border-blue-500 focus:outline-4 focus:outline  focus:outline-blue-500/10 ${className}`}
+          className={`w-full mt-1 placeholder:capitalize placeholder:text-base text-sm md:text-base px-2 py-1.5 border border-gray-400 rounded-md  focus:border-blue-500 focus:outline-4 focus:outline  focus:outline-blue-500/10 ${className}`}
         />
       )}
     </div>

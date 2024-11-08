@@ -11,3 +11,6 @@
 body {
   background-color: #f4f9fa;
 }
+.root {
+  padding-top: 0;
+}
