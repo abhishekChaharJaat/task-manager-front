@@ -55,7 +55,7 @@ function Home() {
             </div>
             <div className="flex-1 p-6 bg-gray-100 rounded-lg shadow-lg">
               <h4 className="mb-4 text-xl font-semibold">Delete Task</h4>
-              <p>Delete tasks antime </p>
+              <p>Delete tasks anytime </p>
             </div>
           </div>
         </div>
