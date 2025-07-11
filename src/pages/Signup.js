@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Input from "../components/Input";
+import { FiUser, FiMail, FiLock, FiCheck, FiX } from "react-icons/fi";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import Loading from "../components/Loading";
+
 const Signup = () => {
-  const appContext = useAppContext();
-  const { signupUser, loading } = appContext;
+  const { signupUser, loading, setShowSignup, setShowLogin } = useAppContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,63 +22,89 @@ const Signup = () => {
   return (
     <>
       {loading && <Loading />}
-      {true && (
-        <div className="w-full px-6 pt-20 flex justify-center items-center min-h-screen box-border bg-[#f4f9fa] ">
-          <div className="box-border flex flex-col items-center justify-center px-4 md:px-6 lg:px-10 py-6  lg:py-10 bg-white shadow-lg rounded-2xl w-[500px]">
-            <p className="text-2xl font-bold text-gray-700 uppercase lg:text-3xl ">
-              Signup
-            </p>
 
-            {/* form */}
-            <div className="box-border flex flex-col items-start justify-center w-full py-2">
-              <Input
-                label={"Name"}
-                placeholder={"Enter your full name"}
-                wrapperClassName="mt-6"
+      <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+        <div className="relative w-full bg-white shadow-2xl rounded-xl p-6 md:py-8 md:px-10 animate-fade-in-down md:w-[600px]">
+          {/* ❌ Close Button */}
+          <button
+            onClick={() => setShowSignup(false)}
+            className="absolute top-1 right-4 text-gray-400 hover:text-gray-600 text-[30px] font-bold focus:outline-none"
+            aria-label="Close"
+          >
+            <FiX />
+          </button>
+
+          <h2 className="text-[16px] md:text-2xl font-bold text-center text-gray-800 font-sans mb-6">
+            Create Your Task Manager Account
+          </h2>
+
+          {/* Form */}
+          <div className="flex flex-col space-y-4">
+            {/* Name */}
+            <div className="relative">
+              <FiUser className="absolute top-3.5 left-3 text-gray-400 text-lg" />
+              <input
+                type="text"
+                placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              />
-              <Input
-                label={"Email"}
-                placeholder={"Enter your email"}
-                wrapperClassName="mt-4"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                label={"Password"}
-                placeholder={"Enter your password"}
-                type={"password"}
-                wrapperClassName="mt-4"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Input
-                label={"Confirm Password"}
-                placeholder={"Re-enter your password"}
-                type={"password"}
-                wrapperClassName="mt-4 !md:text-xl"
-                value={cpassword}
-                onChange={(e) => setCpassword(e.target.value)}
-              />
-
-              <Button
-                onClick={signup}
-                title="Signup"
-                className="my-8 md:mt-10"
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            <p className="mt-2 text-sm">
-              Already have an account?{" "}
-              <Link className="underline text-primary" to="/login">
-                Login
-              </Link>
-            </p>
+            {/* Email */}
+            <div className="relative">
+              <FiMail className="absolute top-3.5 left-3 text-gray-400 text-lg" />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Password */}
+            <div className="relative">
+              <FiLock className="absolute top-3.5 left-3 text-gray-400 text-lg" />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Confirm Password */}
+            <div className="relative">
+              <FiCheck className="absolute top-3.5 left-3 text-gray-400 text-lg" />
+              <input
+                type="password"
+                placeholder="Re-enter your password"
+                value={cpassword}
+                onChange={(e) => setCpassword(e.target.value)}
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <Button onClick={signup} title="Sign Up" className="w-full mt-4" />
           </div>
+
+          <p className="text-sm text-center mt-6">
+            Already have an account?{" "}
+            <button
+              onClick={() => {
+                setShowSignup(false);
+                setShowLogin(true);
+              }}
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Login
+            </button>
+          </p>
         </div>
-      )}
+      </div>
     </>
   );
 };

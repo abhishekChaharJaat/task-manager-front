@@ -17,6 +17,8 @@ const AppContextProvider = (props) => {
   const [tasks, setTasks] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const isUserInfoRetrieved = useRef(false);
+  const [isSignup, setShowSignup] = useState(false);
+  const [isLogin, setShowLogin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,12 +42,13 @@ const AppContextProvider = (props) => {
     if (response.ok) {
       const resp = await response.json();
       const userInfo = { ...resp?.data, isLoggedIn: true };
-      console.log(userInfo);
       setUserInfo(userInfo);
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
       navigate("/tasks");
       // call fetch Task function
       getAllTasks(userInfo.authToken);
+      setShowLogin(false);
+      setShowSignup(false);
     } else {
       const resp = await response.json();
       alert(resp.error);
@@ -55,6 +58,8 @@ const AppContextProvider = (props) => {
   const logoutUser = () => {
     localStorage.clear();
     setUserInfo(null);
+    setShowLogin(false);
+    setShowSignup(false);
     isUserInfoRetrieved.current = false;
   };
 
@@ -75,6 +80,8 @@ const AppContextProvider = (props) => {
       setUserInfo(userInfo);
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
       navigate("/tasks");
+      setShowLogin(false);
+      setShowSignup(false);
     } else {
       const res = await response.json();
       alert(res.error);
@@ -174,6 +181,10 @@ const AppContextProvider = (props) => {
         tasks,
         userInfo,
         loading,
+        isSignup,
+        isLogin,
+        setShowLogin,
+        setShowSignup,
         addTask,
         deleteTask,
         editTask,

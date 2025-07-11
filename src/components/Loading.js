@@ -1,9 +1,9 @@
 import React from "react";
-import loader from "../loader.gif";
+
 const Loading = () => {
   return (
-    <div className="fixed t-0  l-0 w-full min-h-screen bg-black/40 z-5   flex items-center justify-center">
-      <img src={loader} alt="loader" className="w-20" />
+    <div className="fixed top-0 left-0 w-full min-h-screen bg-black/40 z-[100] flex items-center justify-center">
+      <div className="w-12 h-12 border-4 border-t-transparent border-blue-500 rounded-full animate-spin"></div>
     </div>
   );
 };
